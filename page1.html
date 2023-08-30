@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Multi-Page Survey Form</title>
+</head>
+<body>
+    <div class="survey-container">
+        <form id="survey-form" action="https://formsubmit.co/f6f701d42e6ff43a23bb1bfca9ea162b " method="post">
+            <div class="page" id="page1">
+                <h2>Page 1: Personal Info</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="Name" required>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="Age" required>
+                <br>
+                <br>
+                <button class="next-button" type="button" onclick="showPage('page2')">Next</button>
+            </div>
+
+            <div class="page" id="page2" style="display: none;">
+                <h2>Page 2: Feedback</h2>
+                <p>Name: <span id="display-name"></span></p>
+                <p>Age: <span id="display-age"></span></p>
+                <label for="feedback">Please provide your feedback:</label>
+                <textarea id="feedback" name="feedback" rows="4" required></textarea>
+                <button class="prev-button" type="button" onclick="showPage('page1')">Previous</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            var page1 = document.getElementById("page1");
+            var page2 = document.getElementById("page2");
+            var displayName = document.getElementById("display-name");
+            var displayAge = document.getElementById("display-age");
+            
+            if (pageId === "page1") {
+                page1.style.display = "block";
+                page2.style.display = "none";
+            } else if (pageId === "page2") {
+                page1.style.display = "none";
+                page2.style.display = "block";
+                displayName.textContent = document.getElementById("name").value;
+                displayAge.textContent = document.getElementById("age").value;
+            }
+        }
+    </script>
+</body>
+</html>
